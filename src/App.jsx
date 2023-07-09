@@ -1,8 +1,15 @@
+import Logo from "./components/Logo.jsx";
+import Form from "./components/Form.jsx";
+import PackingList from "./components/PackingList.jsx";
+import Stats from "./components/Stats.jsx";
 function App() {
   return (
-    <>
-        <div>Yo</div>
-    </>
+    <div className="app">
+        <Logo/>
+        <Form/>
+        <PackingList/>
+        <Stats/>
+    </div>
   )
 }
 
