@@ -4,6 +4,7 @@ const initItemData = {description: "", quantity: 1}
 
 export default function Form () {
     const [itemData,setItemData] = useState(initItemData)
+
     function handleSubmit(e) {
         e.preventDefault();
         if (!itemData.description) return
