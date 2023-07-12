@@ -1,10 +1,8 @@
 import {useState} from "react";
 
-const initItemData = {description: "", quantity: 1}
-
-// eslint-disable-next-line react/prop-types
+/* eslint-disable react/prop-types */
 export default function Form ({onAddItems}) {
-    const [item,setItem] = useState(initItemData)
+    const [item,setItem] = useState({description: "", quantity: 1})
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -13,7 +11,7 @@ export default function Form ({onAddItems}) {
         const newItem = {...item, packed:false, id:Date.now()}
         onAddItems(newItem)
 
-        setItem(initItemData)
+        setItem({description: "", quantity: 1})
     }
 
     function handleChange(e){
