@@ -1,15 +1,36 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 
 /* eslint-disable react/prop-types */
-export default function Form ({onAddItems}) {
+export default function Form ({onAddItems,selectedItem,onEditItem}) {
     const [item,setItem] = useState({description: "", quantity: 1})
+    const [isEditing, setIsEditing] = useState(false)
+
+    useEffect(()=>{
+         setIsEditing(Object.keys(selectedItem).length !== 0)
+
+        if (isEditing){
+            setItem({description: selectedItem.description || "", quantity:selectedItem.quantity || 1})
+        }
+
+        if(!isEditing){
+            setItem({description: "", quantity:1})
+        }
+
+    },[isEditing, selectedItem])
 
     function handleSubmit(e) {
         e.preventDefault();
         if (!item.description) return
 
-        const newItem = {...item, packed:false, id:Date.now()}
-        onAddItems(newItem)
+        if(!isEditing){
+            const newItem = {...item, packed:false, id:Date.now()}
+            onAddItems(newItem)
+        }
+
+        if(isEditing){
+            const newItem = {...item, packed:selectedItem.packed, id:Date.now()}
+            onEditItem(newItem)
+        }
 
         setItem({description: "", quantity: 1})
     }
@@ -35,7 +56,7 @@ export default function Form ({onAddItems}) {
                 }
             </select>
             <input type="text" name="description" value={item.description} onChange={handleChange} placeholder="Item..."/>
-            <button type="submit">Add</button>
+            <button type="submit">{isEditing ? "Edit" : "Add"}</button>
         </form>
     )
 }
