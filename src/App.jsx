@@ -6,7 +6,7 @@ import PackingList from "./components/PackingList.jsx";
 import Stats from "./components/Stats.jsx";
 
 function App() {
-    const [packageItems, setPackingItems] = useState([{ id: 1, description: "Passports", quantity: 2, packed: false }])
+    const [packingItems, setPackingItems] = useState([])
     const [selectedItem, setSelectedItem] = useState({})
 
     function handleItems(item) {
@@ -24,7 +24,7 @@ function App() {
     }
 
     function handleSelectItem(id) {
-        setSelectedItem(packageItems.find(item=> item.id === id))
+        setSelectedItem(packingItems.find(item=> item.id === id))
     }
 
     function handleEdit(editedItem){
@@ -39,8 +39,8 @@ function App() {
     <div className="app">
         <Logo/>
         <Form onAddItems={handleItems} selectedItem={selectedItem} onEditItem={handleEdit}/>
-        <PackingList packageItems={packageItems} onDeleteItem={handleItemDelete} onToggleItem={handleToggleItem} onSelectItem={handleSelectItem} />
-        <Stats/>
+        <PackingList packageItems={packingItems} onDeleteItem={handleItemDelete} onToggleItem={handleToggleItem} onSelectItem={handleSelectItem} />
+        <Stats items={packingItems}/>
     </div>
   )
 }
