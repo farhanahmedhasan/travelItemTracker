@@ -39,7 +39,7 @@ function App() {
     <div className="app">
         <Logo/>
         <Form onAddItems={handleItems} selectedItem={selectedItem} onEditItem={handleEdit}/>
-        <PackingList packageItems={packingItems} onDeleteItem={handleItemDelete} onToggleItem={handleToggleItem} onSelectItem={handleSelectItem} />
+        <PackingList packingItems={packingItems} onDeleteItem={handleItemDelete} onToggleItem={handleToggleItem} onSelectItem={handleSelectItem} />
         <Stats items={packingItems}/>
     </div>
   )
