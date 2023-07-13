@@ -3,7 +3,7 @@ import PackingFilter from "./PackingFilter.jsx";
 import {useState} from "react";
 
 /* eslint-disable react/prop-types */
-export default function PackingList ({packingItems, onDeleteItem, onToggleItem,onSelectItem}){
+export default function PackingList ({packingItems, onDeleteItem, onToggleItem,onSelectItem, onClear}){
     const [sortBy, setSortBy] = useState("input")
 
     let sortedItems;
@@ -24,7 +24,10 @@ export default function PackingList ({packingItems, onDeleteItem, onToggleItem,o
                 {sortedItems.map(item => <Item key={item.id} item={item} onDeleteItem={onDeleteItem} onToggleItem={onToggleItem} onSelectItem={onSelectItem}/>)}
             </ul>
 
-            <PackingFilter sortBy={sortBy} setSortBy={setSortBy}/>
+            <div className="actions">
+                <PackingFilter sortBy={sortBy} setSortBy={setSortBy}/>
+                <button onClick={onClear}>Clear List</button>
+            </div>
         </div>
     )
 }

@@ -35,11 +35,16 @@ function App() {
         setSelectedItem({})
     }
 
+    function handleClearItems(){
+        const confirm = window.confirm("Are you sure you want to delete all items?")
+        if(confirm) setPackingItems([])
+    }
+
   return (
     <div className="app">
         <Logo/>
         <Form onAddItems={handleItems} selectedItem={selectedItem} onEditItem={handleEdit}/>
-        <PackingList packingItems={packingItems} onDeleteItem={handleItemDelete} onToggleItem={handleToggleItem} onSelectItem={handleSelectItem} />
+        <PackingList packingItems={packingItems} onDeleteItem={handleItemDelete} onToggleItem={handleToggleItem} onSelectItem={handleSelectItem} onClear={handleClearItems}/>
         <Stats items={packingItems}/>
     </div>
   )
